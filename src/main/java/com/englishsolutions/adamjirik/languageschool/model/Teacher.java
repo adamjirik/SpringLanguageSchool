@@ -3,6 +3,7 @@ package com.englishsolutions.adamjirik.languageschool.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,15 @@ public class Teacher {
 	private String firstName;
 	private String lastName;
 	private Set<SchoolGroup> groups = new HashSet<>();
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	private User user;
 	
 	@OneToMany(mappedBy="teacher")

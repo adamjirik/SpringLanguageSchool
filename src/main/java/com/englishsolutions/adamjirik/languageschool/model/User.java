@@ -7,14 +7,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class User {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Teacher teacher;
+	
+	@OneToOne(mappedBy="user")
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	@OneToOne(mappedBy="user")
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	private Student student;
+
 	private long id;
 	
 	@Column(unique=true)
@@ -25,10 +46,11 @@ public class User {
 	
 	private boolean active;
 	
-	@ManyToOne
-	@JoinColumn(name="role_id")
+
 	private Role role;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public long getId() {
 		return id;
 	}
@@ -81,7 +103,8 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
+	@ManyToOne
+	@JoinColumn(name="role_id")
 	public Role getRole() {
 		return role;
 	}
