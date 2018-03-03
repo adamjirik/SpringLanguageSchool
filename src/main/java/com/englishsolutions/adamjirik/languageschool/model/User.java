@@ -14,15 +14,62 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 public class User {
 
-	private Teacher teacher;
+	private boolean active;
 	
-	@OneToOne(mappedBy="user")
-	public Teacher getTeacher() {
-		return teacher;
+	private String email;
+
+	private long id;
+
+	private String lastName;
+
+	private String name;
+
+	private String password;
+	private Role role;
+	private Student student;
+	private Teacher teacher;
+	public User() {
+	}
+	public User(String email, String name, String lastName, String password,
+			boolean active, Role role) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.lastName = lastName;
+		this.password = password;
+		this.active = active;
+		this.role = role;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public long getId() {
+		return id;
+	}
+	
+	public String getLastname() {
+		return lastName;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public String getName() {
+		return name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	public Role getRole() {
+		return role;
 	}
 
 	@OneToOne(mappedBy="user")
@@ -30,70 +77,9 @@ public class User {
 		return student;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	private Student student;
-
-	private long id;
-	
-	@Column(unique=true)
-	@Email
-	private String email;
-	
-	private String password;
-	
-	private boolean active;
-	
-
-	private Role role;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public User() {
-		super();
-	}
-
-	public User(String email, String password, boolean active, Role role) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.active = active;
-		this.role = role;
-	}
-
-	public User(Integer id, String email, String password, boolean active, Role role) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.active = active;
-		this.role = role;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	@OneToOne(mappedBy="user")
+	public Teacher getTeacher() {
+		return teacher;
 	}
 
 	public boolean isActive() {
@@ -103,14 +89,37 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	@ManyToOne
-	@JoinColumn(name="role_id")
-	public Role getRole() {
-		return role;
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastName = lastname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 

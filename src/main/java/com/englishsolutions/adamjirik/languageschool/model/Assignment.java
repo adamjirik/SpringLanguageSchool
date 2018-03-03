@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,6 +20,19 @@ public class Assignment {
 	private Date dueDate;
 	private Double grade;
 	private Set<StudentAssignment> studentAssignments;
+	private SchoolGroup schoolGroup;
+
+	@ManyToOne
+	@JoinColumn(name="group_id")
+	public SchoolGroup getSchoolGroup() {
+		return schoolGroup;
+	}
+
+
+
+	public void setSchoolGroup(SchoolGroup schoolGroup) {
+		this.schoolGroup = schoolGroup;
+	}
 
 	private String type;
 

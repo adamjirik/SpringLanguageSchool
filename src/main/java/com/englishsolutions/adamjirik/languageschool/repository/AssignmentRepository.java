@@ -1,9 +1,11 @@
 package com.englishsolutions.adamjirik.languageschool.repository;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.englishsolutions.adamjirik.languageschool.model.Assignment;
 
-public interface AssignmentRepository extends Repository<Assignment, Long> {
+@Repository
+public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
 
 }

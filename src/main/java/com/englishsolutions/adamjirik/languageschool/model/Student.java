@@ -35,10 +35,6 @@ public class Student {
 	private User user;
 	
 	
-	private String lastName;
-	
-	private String name;
-	
 	private Set<StudentAssignment> studentAssignments;
 
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,14 +58,8 @@ public class Student {
 		return id;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
 
-	public String getName() {
-		return name;
-	}
-	
+
 	public void setAssignments(Set<StudentAssignment> assignments) {
 		this.studentAssignments = assignments;
 	}
@@ -83,23 +73,13 @@ public class Student {
 		this.id = id;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-	public Student(Set<SchoolGroup> groups, User user, String lastName, String name,
+	public Student(Set<SchoolGroup> groups, User user, 
 			Set<StudentAssignment> studentAssignments) {
 		super();
 		this.groups = groups;
 		this.user = user;
-		this.lastName = lastName;
-		this.name = name;
+
 		studentAssignments = new HashSet<>();
 	}
 
