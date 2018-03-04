@@ -83,6 +83,9 @@ public class AdminController {
 		Set<Classroom> classSet = new HashSet<>();
 		classSet.addAll(allClass);
 		model.addAttribute("rooms", classSet);
+		for(Classroom room : classSet) {
+			System.out.println(room);
+		}
 		model.addAttribute("schoolGroup", new SchoolGroup());
 		
 		return "admin/createcourse";
@@ -91,12 +94,18 @@ public class AdminController {
 	@PostMapping("/createcourse")
 	public String createCourse(@Valid @ModelAttribute SchoolGroup schoolGroup, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
+			System.out.println("error");
+			System.out.println(bindingResult.getFieldError().toString());
 			return "admin/createcourse";
 		}
+		List<Classroom> allClass = classService.getAll();
+		Set<Classroom> classSet = new HashSet<>();
+		classSet.addAll(allClass);
 		SchoolGroup savedGroup = sgService.save(schoolGroup);
 		System.out.println(savedGroup);
 		model.addAttribute("success", "Group has been saved");
 		model.addAttribute("schoolGroup", new SchoolGroup());
+		model.addAttribute("rooms", classSet);
 		return "admin/createcourse";
 	}
 }

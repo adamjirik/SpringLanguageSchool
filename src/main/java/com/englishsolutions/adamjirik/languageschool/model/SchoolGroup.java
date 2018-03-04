@@ -123,6 +123,12 @@ public class SchoolGroup {
 //		this.teacher = teacher;
 //		this.students = students;
 	}
+
+	@Override
+	public String toString() {
+		return "SchoolGroup [id=" + id + ", groupName=" + groupName + ", terms=" + terms + ", groupClassroom="
+				+ groupClassroom + ", language=" + language + ", teacher=" + teacher + ", students=" + students + "]";
+	}
 	
 	
 	

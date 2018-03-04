@@ -39,6 +39,10 @@ public class Classroom {
 	public Classroom() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "Classroom [id=" + id + ", roomName=" + roomName + ", seats=" + seats + "]";
+	}
 	
 	
 }
