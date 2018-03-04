@@ -26,7 +26,7 @@ public class AdminController {
 	public String users(Model model, Pageable pageable) {
 		Page<User> pageUser = userService.getAll(pageable);
 		model.addAttribute("users", pageUser);
-		PageWrapper<User> page = new PageWrapper<>(pageUser, "/admin/config/");
+		PageWrapper<User> page = new PageWrapper<>(pageUser, "/admin/");
 		model.addAttribute("page", page);
 		
 		return "admin/userview";
