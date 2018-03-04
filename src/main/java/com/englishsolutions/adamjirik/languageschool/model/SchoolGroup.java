@@ -108,15 +108,20 @@ public class SchoolGroup {
 		super();
 	}
 
-	public SchoolGroup(String groupName, Set<Term> terms, Classroom groupClassroom, String language, Teacher teacher,
-			Set<Student> students) {
+	public SchoolGroup(String groupName, 
+//			Set<Term> terms, 
+			Classroom groupClassroom, 
+			String language 
+//			Teacher teacher,
+//			Set<Student> students
+			) {
 		super();
 		this.groupName = groupName;
-		this.terms = terms;
+//		this.terms = terms;
 		this.groupClassroom = groupClassroom;
 		this.language = language;
-		this.teacher = teacher;
-		this.students = students;
+//		this.teacher = teacher;
+//		this.students = students;
 	}
 	
 	

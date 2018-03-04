@@ -1,10 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Simple Sidebar - Start Bootstrap Template</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+
+<!-- Custom styles for this template -->
+<link href="../css/simple-sidebar.css" rel="stylesheet"></link>
+
 </head>
+
 <body>
 
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#"> English Solutions </a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="/admin/courseview">Courses</a></li>
+				<li><a href="/admin/createcourse">Create Course</a></li>
+				<li><a href="/admin/studentview">Student View</a></li>
+				<li><a href="/admin/teacherview">Teacher View</a></li>
+
+				<li sec:authorize="isAuthenticated()"><a class="nav-link"
+					sec:authorize="hasAuthority('Admin')"
+					sec:authentication="principal.authorities" href="/admin/"></a></li>
+				<li sec:authorize="!isAuthenticated()"><a class="nav-link"
+					href="/login">Login</a></li>
+				<li sec:authorize="!isAuthenticated()"><a class="nav-link"
+					href="/register">Register</a></li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<form th:action="@{/logout}" method="post">
+						<button class="btn btn-primary" type="submit" value="Logout">Logout</button>
+					</form>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<h1>Users</h1>
+
+				<form th:action="@{/admin/createcourse}" method="post" th:object="${schoolGroup}">
+
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Group name</label> <input type="text"
+								th:field="*{groupName}" class="form-control"
+								placeholder="Group Name" id="groupName" />
+							<p class="help-block text-danger"></p>
+						</div>
+						<label th:if="${#fields.hasErrors('groupName')}"
+							th:errors="*{groupName}" class="help-block text-danger"></label>
+					</div>
+
+					<div class="control-group">
+						<div>
+							<select name="classroomSelect" th:field="*{groupClassroom}">
+								<option 
+								th:each="room : ${rooms}"
+								th:value ="${room}"
+								th:text = "${room.roomName}"></option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="control-group">
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>Language</label> <input type="text" th:field="*{language}"
+								class="form-control" placeholder="language" id="language" />
+							<p class="help-block text-danger"></p>
+						</div>
+						<label th:if="${#fields.hasErrors('language')}"
+							th:errors="*{password}" class="help-block text-danger"></label>
+					</div>
+
+
+
+
+					<div id="success"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary" id="createButton">Create</button>
+					</div>
+
+				</form>
+
+
+			</div>
+			<!-- /#page-content-wrapper -->
+
+		</div>
+		<!-- /#wrapper -->
+</div>
+		<!-- Bootstrap core JavaScript -->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Menu Toggle Script -->
+		<script>
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			});
+		</script>
 </body>
+
 </html>

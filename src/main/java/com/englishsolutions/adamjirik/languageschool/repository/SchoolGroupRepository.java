@@ -14,6 +14,6 @@ import com.englishsolutions.adamjirik.languageschool.model.Student;
 public interface SchoolGroupRepository extends JpaRepository<SchoolGroup, Long> {
 
 	@Query("SELECT s.students FROM SchoolGroup s WHERE s.id = :id")
-	public Set<Student> getStudentsByGroup(@Param("id") int id);
+	public Set<Student> getStudentsByGroup(@Param("id") long id);
 	
 }
