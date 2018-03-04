@@ -26,6 +26,7 @@ public class RegistrationController {
 
 	@GetMapping("/register")
 	public String register(Model model) {
+		
 		model.addAttribute("user", new User());
 		return "register";
 	}
@@ -41,6 +42,6 @@ public class RegistrationController {
 		model.addAttribute("success", "User has been registred successsfully");
 		model.addAttribute("user", new User());
 		
-		return "registration";
+		return "register";
 	}
 }

@@ -1,6 +1,5 @@
 package com.englishsolutions.adamjirik.languageschool.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class User {
@@ -52,7 +49,7 @@ public class User {
 		return id;
 	}
 	
-	public String getLastname() {
+	public String getLastName() {
 		return lastName;
 	}
 
@@ -99,8 +96,8 @@ public class User {
 		this.id = id;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastName = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public void setName(String name) {
